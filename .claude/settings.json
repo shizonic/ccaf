@@ -6,7 +6,9 @@
       "Bash(mkdir:*)",
       "Bash(git:*)",
       "Bash(rg:*)",
-      "Bash(gh:*)"
+      "Bash(gh:*)",
+      "mcp__firecrawl__firecrawl_search",
+      "mcp__firecrawl__firecrawl_scrape"
     ]
   },
   "enableAllProjectMcpServers": true,
