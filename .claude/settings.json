@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(git:*)",
+      "Bash(rg:*)",
+      "Bash(gh:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "context7",
+    "firecrawl",
+    "ref"
+  ]
+}
