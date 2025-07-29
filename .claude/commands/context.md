@@ -1,46 +1,52 @@
 ---
-description: "Creates context for projects, features and tech-stacks"
-use-agents: [Analyzer, Researcher, Product Manager, Architect, Writer]
+description: "Orchestrates context creation for projects, features, and tech stacks"
+agents: [Analyzer, Researcher, Product Manager, Architect, Writer]
 ---
 
 # Context Command
 
-## Usage examples
-
+## Usage
 ```
 /context
-/context The integration of an AI chat into the backend
-/context Create a PRD for feature XYZ
-/context Research API documentation for OpenAI Chat Responses
+/context AI chat backend integration
+/context Create PRD for feature XYZ
+/context Research OpenAI Chat API documentation
 ```
 
-## Availabe Agents
-
-- **Analyzer** - Reviews code quality, identifies issues, and provides optimization recommendations
-- **Researcher** - Investigates technologies, analyzes codebases, and gathers technical information
-- **Product Manager** - Translates business requirements into technical specifications and manages project scope
-- **Architect** - Designs system architectures, evaluates technical approaches, and creates implementation plans from PRDs
-- **Writer** - Creates technical documentation, API references, user guides, and installation instructions
+## Available Agents
+- **Analyzer**: Reviews code quality, identifies issues, provides optimization recommendations
+- **Researcher**: Investigates technologies, analyzes documentation, gathers technical information
+- **Product Manager**: Creates PRDs, translates business requirements into technical specifications
+- **Architect**: Designs system architectures, creates implementation plans from PRDs
+- **Writer**: Creates technical documentation, API references, user guides
 
 ## Task
-
-You are the orchestrator of subagents specialized in context creation. You MUST NOT do anything else than delegate tasks to matching subagents. Choose and spawn matching subagents to archieve goal. You MAY spawn subagents in parallel if benefitcal.
+You are an orchestrator. Your ONLY role is to delegate tasks to appropriate subagents based on $ARGUMENTS. Spawn agents in parallel when beneficial.
 
 ## Process
 
-1. Parse $ARGUMENTS and ultrathink:
-  - Is the creation of a PRD required?
-  - Is documentation research for or based on the PRD required?
-  - Is designing architecture and creating of implementation plans for the PRD required?
-  - Is the creation of tasks based on the PRD and implementaiton plan required?
-  - Is this a brownfield project and code base analysis required?
-  - Is this a brownfield project and project documentation research required?
-  - Or is this only a simple analysis/research request for a specific topic and you can just follow the request?
+1. **Analyze Request**
+   Ultrathink about $ARGUMENTS to determine required outputs:
+   - PRD creation needed?
+   - Documentation research needed?
+   - Architecture/implementation plan needed?
+   - Task breakdown needed?
+   - Codebase analysis needed? (brownfield projects)
+   - Simple topic research only?
 
-2. Based on you findings do (if required):
-  - Create simple PRD and write it to docs/prd.md
-  - Research documentation for or based on PRD and write multiple docs/[matching name].md 
-  - Research documentation used in this project and write multiple docs/[matching name].md
-  - Analyze current project code base and create docs/codebase-analysis.md
-  - Design architecture and create implementation plan in docs/plan.md
-  - Break PRD and implementation plan into small, manageable tasks and create docs/tasks.md
+2. **Execute**
+   Based on analysis, delegate to appropriate agents:
+   
+   | Output Needed | Agent(s) | File Location |
+   |--------------|----------|---------------|
+   | PRD | Product Manager | `docs/prd.md` |
+   | Documentation Research | Researcher | `docs/[topic].md` |
+   | Codebase Analysis | Analyzer | `docs/codebase-analysis.md` |
+   | Architecture & Implementation | Architect | `docs/plan.md` |
+   | Task Breakdown | Product Manager + Architect | `docs/tasks.md` |
+   | Topic Research | Researcher | `docs/[topic].md` |
+
+3. **Coordinate**
+   - Run agents in parallel when their outputs are independent
+   - Run sequentially when outputs depend on each other (e.g., implementation plan requires PRD)
+   - Ensure all outputs are written to appropriate files
