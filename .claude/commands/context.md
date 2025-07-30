@@ -1,51 +1,64 @@
 ---
-description: "Orchestrates context creation for projects, features, and tech stacks"
-agents: [Analyzer, Researcher]
+description: Gather comprehensive context about a project, feature, or technology through parallel research and analysis
+agents: researcher, analyzer, writer
 ---
 
-# Context Command
+## Task: $ARGUMENTS
+
+IF $ARGUMENTS is empty: "What would you like to gather context about?"
+
+## Flow
+```
+researcher │ analyzer → orchestrator → writer │ writer │ writer
+     ↓          ↓            ↓             ↓       ↓       ↓
+ External   Internal     Synthesize    3 parallel docs
+```
+
+## Orchestration
+
+### Phase 1: Parallel Research (researcher │ analyzer)
+
+**researcher**: 
+- Research $ARGUMENTS externally
+- Find official docs, APIs, best practices
+- MUST use MCP tools (context7, firecrawl, ref) when available
+- Focus on latest versions and standards
+
+**analyzer**:
+- Analyze existing codebase for $ARGUMENTS
+- Identify current implementations, patterns, dependencies
+- Map project structure and architecture
+- Note technical debt or improvements needed
+
+### Phase 2: Synthesis & Documentation
+
+Orchestrator MUST:
+1. Combine researcher findings + analyzer insights
+2. Identify gaps and overlaps
+3. Create unified context understanding
+
+Then spawn 3 parallel writers with synthesized context:
+
+**writer 1** → `docs/context-overview.md`
+- Executive summary of $ARGUMENTS
+- Key findings from research + analysis
+- Current state vs best practices
+
+**writer 2** → `docs/tech-stack-analysis.md`  
+- Technologies, frameworks, dependencies
+- Version information and compatibility
+- Integration points and constraints
+
+**writer 3** → `docs/implementation-guide.md`
+- API references and code examples
+- Architecture patterns applicable
+- Next steps and recommendations
+
+MUST NOT assume greenfield - adapt to existing code when present.
 
 ## Usage
-```
-/context
-/context Analyse AI chat backend integration
-/context Research OpenAI Chat API documentation
-```
 
-## Available Agents
-- **Analyzer**: Reviews code quality, identifies issues, provides optimization recommendations
-- **Researcher**: Investigates technologies, analyzes documentation, gathers technical information
-- **Product Manager**: Creates PRDs, translates business requirements into technical specifications
-- **Architect**: Designs system architectures, creates implementation plans from PRDs
-- **Writer**: Creates technical documentation, API references, user guides
-
-## Task
-You are an orchestrator. Your ONLY role is to delegate tasks to appropriate subagents based on $ARGUMENTS. Spawn agents in parallel when beneficial.
-
-## Process
-
-1. **Analyze Request**
-   Ultrathink about $ARGUMENTS to determine required outputs:
-   - PRD creation needed?
-   - Documentation research needed?
-   - Architecture/implementation plan needed?
-   - Task breakdown needed?
-   - Codebase analysis needed? (brownfield projects)
-   - Simple topic research only?
-
-2. **Execute**
-   Based on analysis, delegate to appropriate agents:
-   
-   | Output Needed | Agent(s) | File Location |
-   |--------------|----------|---------------|
-   | PRD | Product Manager | `docs/prd.md` |
-   | Documentation Research | Researcher | `docs/[topic].md` |
-   | Codebase Analysis | Analyzer | `docs/codebase-analysis.md` |
-   | Architecture & Implementation | Architect | `docs/plan.md` |
-   | Task Breakdown | Product Manager + Architect | `docs/tasks.md` |
-   | Topic Research | Researcher | `docs/[topic].md` |
-
-3. **Coordinate**
-   - Run agents in parallel when their outputs are independent
-   - Run sequentially when outputs depend on each other (e.g., implementation plan requires PRD)
-   - Ensure all outputs are written to appropriate files
+> /context how to implement JWT authentication
+> /context React Server Components  
+> /context our entire e-commerce platform
+> /context migrating from REST to GraphQL

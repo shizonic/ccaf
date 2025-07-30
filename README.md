@@ -1,51 +1,58 @@
 # Claude Code Agent Framework (CCAF)
 
-Specialized AI agents for development workflows in Claude Code. Get the right expertise for each task with focused agents and multi-agent orchestration.
-
-## Agents
-
-- **Analyzer**: Reviews code quality, identifies security vulnerabilities, and provides performance optimization recommendations
-- **Researcher**: Investigates technologies and frameworks, providing comprehensive reports on technical components and best practices
-- **Product Manager**: Transforms feature ideas into structured PRDs and breaks down complex projects into actionable tasks
-- **Architect**: Designs scalable system architectures and translates business requirements into technical solutions
-- **Frontend Developer**: Builds responsive UI components, optimizes frontend performance, and creates accessible user interfaces
-- **Backend Developer**: Designs APIs, implements secure authentication, optimizes database operations, and builds scalable server architectures
-- **Fullstack Developer**: Implements complete features across frontend and backend, handles database operations, and develops APIs with practical solutions
-- **Git Specialist**: Manages version control workflows, resolves merge conflicts, and ensures proper commit standards
-- **Tester**: Creates comprehensive test suites, executes tests, and provides detailed analysis of results
-- **Writer**: Creates clear documentation including API references, user guides, and technical specifications
+Multi-agent orchestration framework for specialized AI development workflows.
 
 ## Commands
 
-### /context
-Orchestrates multiple agents for complex workflows.
+### Research & Planning
+- `/context` - Research technologies, analyze existing code, understand codebases
+  - **When**: Exploring unfamiliar tech, investigating bugs, or learning project structure
+- `/plan` - Transform ideas into PRDs and technical architectures
+  - **When**: Starting new features, defining requirements, or designing system architecture
 
+### Development & Quality
+- `/implement` - Develop features with automatic agent selection based on task complexity
+  - **When**: Building features, fixing bugs, or coding solutions after planning
+- `/validate` - Create comprehensive tests and perform code quality analysis
+  - **When**: Testing new features, ensuring code quality, or debugging issues
+
+### Complete Workflows
+- `/workflow` - End-to-end development cycle: research → plan → implement → validate
+  - **When**: Full feature development from concept to tested implementation
+
+## Quick Decision Guide
+
+**Starting fresh?** → `/workflow` (complete cycle)  
+**Need to understand something?** → `/context` (research first)  
+**Have requirements ready?** → `/implement` (jump to coding)  
+**Code needs testing?** → `/validate` (quality assurance)
+
+## Usage Examples
+
+```bash
+/context JWT authentication best practices
+/plan user authentication system  
+/implement JWT auth middleware
+/validate authentication system
+/workflow add real-time notifications
 ```
-/context
-/context AI chat backend integration
-/context Create PRD for feature XYZ
-```
 
-Creates PRDs, research docs, architecture plans, and implementation breakdowns by coordinating the right agents automatically.
+## Agent Capabilities
 
-## Usage
+### Development Specialists
+- **fullstack-developer** - Complete web applications, APIs, database integration
+- **backend-developer** - Server-side logic, APIs, database design, performance optimization
+- **frontend-developer** - UI components, responsive design, client-side optimization
+- **git-specialist** - Version control, branch management, merge conflict resolution
 
-**Individual Agents**: Select the appropriate agent in Claude Code based on your task.
+### Planning & Analysis
+- **product-manager** - Feature requirements, PRDs, task breakdown, project planning
+- **architect** - Technical system design, scalability planning, technology decisions
+- **analyzer** - Code quality assessment, security audits, performance analysis
+- **researcher** - Technology investigation, best practices, framework documentation
 
-**Complex Tasks**: Use `/context` command for multi-agent coordination.
+### Quality & Documentation
+- **tester** - Automated testing, test strategy, quality assurance workflows
+- **writer** - Technical documentation, API docs, user guides, specifications
 
-## Setup
-
-1. Clone to your workspace
-2. Ensure Claude Code is installed
-3. Agents and commands are automatically available
-
-## Structure
-
-```
-.claude/
-├── agents/          # Agent configurations
-├── commands/        # /context command
-└── settings.json    # Permissions and MCP config
-.mcp.json           # MCP servers (context7, firecrawl, ref)
-```
+**Framework automatically selects optimal agents based on your task complexity and requirements.**

@@ -1,42 +1,66 @@
 ---
-description: "Orchestrates implementation of projects, features and bugfixes"
-agents: [Developer, Tester, Git Specialist, Writer]
+description: Implement features, fixes, or complete projects with adaptive development approach and optional version control
+agents: fullstack-developer, backend-developer, frontend-developer, git-specialist
 ---
 
-# Context Command
+## Task: $ARGUMENTS
+
+IF $ARGUMENTS is empty: "What would you like to implement?"
+
+## Flow
+```
+Simple: fullstack-developer → [git-specialist]
+Complex: backend-developer │ frontend-developer → [git-specialist]
+```
+
+## Orchestration
+
+### Phase 1: Implementation Strategy
+
+Orchestrator MUST analyze $ARGUMENTS to determine:
+- Scope requires full-stack OR specialized development
+- Existing code patterns to follow
+- Git commits beneficial or not
+
+### Phase 2A: Solo Implementation (if unified work)
+
+**fullstack-developer**:
+- Implement $ARGUMENTS following existing patterns
+- MUST use KISS, DRY, YAGNI principles
+- NEVER add unrequested features
+- Prefer editing existing files over creating new ones
+
+### Phase 2B: Parallel Implementation (if separable)
+
+**backend-developer** │ **frontend-developer** (parallel):
+
+Backend:
+- APIs, database, business logic for $ARGUMENTS
+- Security, performance, error handling
+- Follow existing backend patterns
+
+Frontend:  
+- UI components, state management for $ARGUMENTS
+- Accessibility, responsive design
+- Follow existing frontend patterns
+
+Orchestrator MUST coordinate both outputs for consistency.
+
+### Phase 3: Version Control (optional)
+
+IF git commits would help organization:
+
+**git-specialist**:
+- Create semantic commits for changes
+- MUST NOT include "Co-Authored-By: Claude"
+- One commit per logical change
+- Clear commit messages
+
+Skip if changes are exploratory or temporary.
 
 ## Usage
-```
-/implement
-/implement AI chat backend integration
-/implement UI for mobile app
-/implement Test markdown parser
-```
 
-## Available Agents
-- **Developer** - Implements features, fixes bugs, and writes clean maintainable code following KISS, DRY, and YAGNI principles
-- **Tester** - Develops comprehensive test suites, executes tests, and analyzes results
-- **Git Specialist** - Handles Git operations, merge conflicts, branch management, and GitHub CLI tasks
-- **Writer** - Creates technical documentation, API references, user guides, and installation instructions
-
-## Task
-You are an orchestrator. Your ONLY role is to delegate tasks to appropriate subagents based on $ARGUMENTS. Spawn agents in parallel when beneficial.
-
-## Process
-
-1. **Analyze Request**
-   Ultrathink about $ARGUMENTS to determine required outputs:
-   **TODO**
-
-2. **Execute**
-   Based on analysis, delegate to appropriate agents:
-   
-   | Output Needed | Agent(s) | File Location |
-   |--------------|----------|---------------|
-
-   **TODO**
-
-3. **Coordinate**
-   - Run agents in parallel when their outputs are independent
-   - Run sequentially when outputs depend on each other (e.g., implementation requires component XYZ)
-   - Ensure all outputs are written to appropriate files
+> /implement fix the login timeout bug
+> /implement add dark mode toggle
+> /implement create REST API for user management  
+> /implement build complete chat application
