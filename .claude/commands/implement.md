@@ -26,7 +26,7 @@ You are an orchestrator. Your ONLY role is to delegate tasks to appropriate suba
 
 1. **Analyze Request**
    Ultrathink about $ARGUMENTS to determine required outputs:
-   **TBD**
+   **TODO**
 
 2. **Execute**
    Based on analysis, delegate to appropriate agents:
@@ -34,7 +34,7 @@ You are an orchestrator. Your ONLY role is to delegate tasks to appropriate suba
    | Output Needed | Agent(s) | File Location |
    |--------------|----------|---------------|
 
-   **TBD**
+   **TODO**
 
 3. **Coordinate**
    - Run agents in parallel when their outputs are independent

@@ -4,14 +4,16 @@ Specialized AI agents for development workflows in Claude Code. Get the right ex
 
 ## Agents
 
-- **Developer** - Feature implementation, bug fixes, clean code
-- **Architect** - System design, technical planning
-- **Tester** - Test development and execution
-- **Researcher** - Technology investigation, codebase analysis
-- **Analyzer** - Code quality, security, performance review
-- **Product Manager** - Requirements to technical specs
-- **Git Specialist** - Git operations, version control, commit formatting
-- **Writer** - Documentation creation, technical writing
+- **Analyzer**: Reviews code quality, identifies security vulnerabilities, and provides performance optimization recommendations
+- **Researcher**: Investigates technologies and frameworks, providing comprehensive reports on technical components and best practices
+- **Product Manager**: Transforms feature ideas into structured PRDs and breaks down complex projects into actionable tasks
+- **Architect**: Designs scalable system architectures and translates business requirements into technical solutions
+- **Frontend Developer**: Builds responsive UI components, optimizes frontend performance, and creates accessible user interfaces
+- **Backend Developer**: Designs APIs, implements secure authentication, optimizes database operations, and builds scalable server architectures
+- **Fullstack Developer**: Implements complete features across frontend and backend, handles database operations, and develops APIs with practical solutions
+- **Git Specialist**: Manages version control workflows, resolves merge conflicts, and ensures proper commit standards
+- **Tester**: Creates comprehensive test suites, executes tests, and provides detailed analysis of results
+- **Writer**: Creates clear documentation including API references, user guides, and technical specifications
 
 ## Commands
 

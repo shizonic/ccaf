@@ -1,6 +1,6 @@
 ---
 description: "Orchestrates context creation for projects, features, and tech stacks"
-agents: [Analyzer, Researcher, Product Manager, Architect, Writer]
+agents: [Analyzer, Researcher]
 ---
 
 # Context Command
@@ -8,8 +8,7 @@ agents: [Analyzer, Researcher, Product Manager, Architect, Writer]
 ## Usage
 ```
 /context
-/context AI chat backend integration
-/context Create PRD for feature XYZ
+/context Analyse AI chat backend integration
 /context Research OpenAI Chat API documentation
 ```
 
