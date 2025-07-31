@@ -1,5 +1,5 @@
 ---
-description: Implement features, fixes, or complete projects with adaptive development approach and optional version control
+description: Implement features, fixes, or complete projects through massive parallel development
 agents: fullstack-developer, backend-developer, frontend-developer, git-specialist
 ---
 
@@ -9,54 +9,52 @@ IF $ARGUMENTS is empty: "What would you like to implement?"
 
 ## Flow
 ```
-Simple: fullstack-developer → [git-specialist]
-Complex: backend-developer │ frontend-developer → [git-specialist]
+developers... (parallel by module/file/component)
+      ↓
+Direct implementation → [git-specialist]
 ```
 
 ## Orchestration
 
-### Phase 1: Implementation Strategy
+### Phase 1: Implementation Planning
 
-Orchestrator MUST analyze $ARGUMENTS to determine:
-- Scope requires full-stack OR specialized development
-- Existing code patterns to follow
-- Git commits beneficial or not
+Orchestrator analyzes $ARGUMENTS and identifies:
+- Independent modules/components/files
+- Backend vs frontend work
+- Potential conflicts to avoid
+- Optimal parallelization strategy
 
-### Phase 2A: Solo Implementation (if unified work)
+### Phase 2: Parallel Implementation
 
-**fullstack-developer**:
-- Implement $ARGUMENTS following existing patterns
-- MUST use KISS, DRY, YAGNI principles
-- NEVER add unrequested features
-- Prefer editing existing files over creating new ones
+**Option A - Multiple fullstack-developers** (for feature-based split):
+- Each implements ONE complete feature
+- No file conflicts between agents
+- Example: auth, payments, notifications
 
-### Phase 2B: Parallel Implementation (if separable)
+**Option B - Specialized parallel development**:
 
-**backend-developer** │ **frontend-developer** (parallel):
+Spawn multiple **backend-developer** agents:
+- User service
+- Auth middleware  
+- Database models
+- API endpoints
+- Background jobs
 
-Backend:
-- APIs, database, business logic for $ARGUMENTS
-- Security, performance, error handling
-- Follow existing backend patterns
+Spawn multiple **frontend-developer** agents:
+- Login components
+- Dashboard views
+- Form handlers
+- State management
+- UI utilities
 
-Frontend:  
-- UI components, state management for $ARGUMENTS
-- Accessibility, responsive design
-- Follow existing frontend patterns
+Orchestrator ensures NO file conflicts between parallel agents.
 
-Orchestrator MUST coordinate both outputs for consistency.
-
-### Phase 3: Version Control (optional)
-
-IF git commits would help organization:
+### Phase 3: Version Control (if beneficial)
 
 **git-specialist**:
-- Create semantic commits for changes
-- MUST NOT include "Co-Authored-By: Claude"
-- One commit per logical change
-- Clear commit messages
-
-Skip if changes are exploratory or temporary.
+- Review all changes
+- Create logical commits
+- Branch management if needed
 
 ## Usage
 

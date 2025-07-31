@@ -1,67 +1,46 @@
 ---
-description: Create and execute comprehensive tests, analyze code quality, and generate complete documentation
-agents: tester, analyzer, writer, git-specialist
+description: Create and execute comprehensive tests and analyze code quality through massive parallelization
+agents: tester, analyzer, git-specialist
 ---
 
 ## Task: $ARGUMENTS
 
-IF $ARGUMENTS is empty: "What would you like to validate and document?"
+IF $ARGUMENTS is empty: "What would you like to validate?"
 
 ## Flow
 ```
-tester │ analyzer → orchestrator → writer │ writer │ writer → [git]
-   ↓        ↓           ↓             ↓       ↓       ↓
-Tests   Analysis   Synthesize    3 parallel docs
+testers... │ analyzers... → [git]
+     ↓           ↓           
+Direct reports  Direct reports
 ```
 
 ## Orchestration
 
-### Phase 1: Parallel Validation (tester │ analyzer)
+### Phase 1: Parallel Validation
 
-**tester**:
-- Create comprehensive tests for $ARGUMENTS
-- Unit, integration, edge cases
-- Execute all tests and capture results
-- MUST NOT fix failing tests
-- Report coverage metrics
+Orchestrator identifies all testable and analyzable aspects:
 
-**analyzer**:
-- Review code quality for $ARGUMENTS  
-- Security vulnerabilities (OWASP)
-- Performance bottlenecks
+Spawn multiple **tester** agents:
+- Unit tests (per module)
+- Integration tests (per feature)  
+- E2E tests (per user flow)
+- Performance tests
+- Security tests
+Each writes `docs/test-[type]-[module].md`
+
+Spawn multiple **analyzer** agents:
+- Code quality (per service)
+- Security scan (OWASP checks)
+- Performance analysis
 - Architecture compliance
-- Technical debt assessment
+- Dependency audit
+Each writes `docs/analysis-[aspect]-[area].md`
 
-### Phase 2: Documentation
-
-Orchestrator synthesizes test + analysis results, then spawns 3 parallel writers:
-
-**writer 1** → `docs/test-report.md`
-- Test execution summary
-- Pass/fail breakdown
-- Coverage analysis
-- Failed test details (no fixes)
-
-**writer 2** → `docs/quality-analysis.md`
-- Code quality findings
-- Security assessment  
-- Performance review
-- Improvement recommendations
-
-**writer 3** → `docs/user-guide.md`
-- How to use $ARGUMENTS
-- API documentation if applicable
-- Configuration options
-- Troubleshooting guide
-
-### Phase 3: Final PR (optional)
-
-IF project uses PRs:
+### Phase 2: Version Control (if applicable)
 
 **git-specialist**:
-- Create PR with all changes
-- Include test and quality summaries
-- Reference documentation
+- Create PR if changes exist
+- Summarize validation results
 
 ## Usage
 

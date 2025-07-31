@@ -1,5 +1,5 @@
 ---
-description: Transform ideas into comprehensive PRDs, technical architectures, and actionable development tasks
+description: Transform ideas into comprehensive PRDs, technical architectures, and actionable development tasks through massive parallelization
 agents: product-manager, architect, analyzer, writer
 ---
 
@@ -9,57 +9,61 @@ IF $ARGUMENTS is empty: "What would you like to plan?"
 
 ## Flow
 ```
-product-manager → architect → analyzer → writer │ writer │ writer
-       ↓              ↓           ↓          ↓       ↓       ↓
-      PRD         Technical    Validate   3 planning docs
+product-managers... │ architects... │ analyzers...
+         ↓                ↓               ↓
+   Direct writes    Direct writes   Direct writes
+                         ↓
+                    [writer synthesis]
 ```
 
 ## Orchestration
 
-### Phase 1: Requirements (product-manager)
+### Phase 1: Task Decomposition
 
-Create comprehensive PRD for $ARGUMENTS:
-- Problem statement and user needs
-- Functional/non-functional requirements  
-- User stories with acceptance criteria
-- Break into 1-3 day development tasks
-- MUST handle edge cases and error scenarios
+Orchestrator splits $ARGUMENTS into parallel planning tasks:
 
-### Phase 2: Architecture (architect)
+**For product-managers** (by feature/module):
+- User authentication
+- Payment processing  
+- Admin dashboard
+- API endpoints
+- Mobile features
 
-Receive PRD from orchestrator, then:
-- Design technical architecture for $ARGUMENTS
-- Create component diagrams (Mermaid)
-- Define APIs, data models, integrations
-- Choose appropriate patterns and technologies
-- Consider existing codebase constraints
+**For architects** (by system area):
+- Frontend architecture
+- Backend services
+- Database design
+- Infrastructure
+- Security architecture
+- Integration patterns
 
-### Phase 3: Validation (analyzer)
+**For analyzers** (feasibility checks):
+- Technical constraints
+- Performance implications
+- Security considerations
+- Existing code compatibility
 
-Receive PRD + architecture from orchestrator:
-- Validate technical feasibility
-- Identify risks and dependencies
-- Check alignment with existing systems
-- Note security and performance concerns
+### Phase 2: Parallel Planning
 
-### Phase 4: Documentation
+Spawn multiple **product-manager** agents:
+- Each handles ONE feature area
+- Each writes `docs/prd-[feature].md`
 
-Orchestrator synthesizes all inputs, then spawns 3 parallel writers:
+Spawn multiple **architect** agents:
+- Each designs ONE system area
+- Each writes `docs/architecture-[area].md`
 
-**writer 1** → `docs/prd.md`
-- Complete product requirements document
-- User stories and acceptance criteria
+Spawn multiple **analyzer** agents:
+- Each validates ONE aspect
+- Each writes `docs/feasibility-[aspect].md`
 
-**writer 2** → `docs/architecture.md`
-- Technical design with diagrams
-- Component specifications and APIs
+### Phase 3: Synthesis
 
-**writer 3** → `docs/implementation-tasks.md`
-- Prioritized task breakdown
-- Dependencies and timelines
-- Clear action items for developers
-
-Ultrathink for complex architectural decisions.
+**writer** → `docs/implementation-plan.md`
+- Reads all PRDs, architectures, analyses
+- Creates unified implementation plan
+- Prioritizes tasks and dependencies
+- Ultrathink for complex integration decisions
 
 ## Usage
 

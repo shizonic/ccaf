@@ -1,5 +1,5 @@
 ---
-description: Complete development workflow from initial research through implementation to testing and documentation
+description: Complete development workflow from initial research through implementation to testing and documentation with maximum parallelization
 agents: researcher, analyzer, product-manager, architect, fullstack-developer, backend-developer, frontend-developer, tester, writer, git-specialist
 ---
 
@@ -9,66 +9,86 @@ IF $ARGUMENTS is empty: "What would you like to build from start to finish?"
 
 ## Flow
 ```
-CONTEXT → PLAN → IMPLEMENT → VALIDATE
-   ↓        ↓         ↓          ↓
-Research  Design    Build    Test+Doc
+CONTEXT → PLAN → IMPLEMENT → VALIDATE → DOCUMENT
+   ↓        ↓         ↓          ↓          ↓
+Parallel  Parallel  Parallel  Parallel   Synthesis
 ```
 
 ## Orchestration
 
 ### PHASE 1: CONTEXT GATHERING
 
-**researcher** │ **analyzer** (parallel):
-- Researcher: External docs, APIs, best practices for $ARGUMENTS
-- Analyzer: Existing codebase analysis, patterns, constraints
+Spawn multiple **researcher** agents (by topic):
+- Documentation research
+- Best practices research  
+- Security guidelines
+- Performance patterns
+Each writes `docs/research-[topic].md`
 
-Orchestrator synthesizes findings and writes `docs/context-summary.md`
+Spawn multiple **analyzer** agents (by area):
+- Frontend analysis
+- Backend analysis
+- Database analysis
+- Infrastructure review
+Each writes `docs/analysis-[area].md`
 
 ### PHASE 2: PLANNING
 
-**product-manager** (receives context):
-- Create PRD with user stories
-- Break into 1-3 day tasks
-- Define acceptance criteria
+Spawn multiple **product-manager** agents (by feature):
+- Each creates PRD for assigned features
+- Each writes `docs/prd-[feature].md`
 
-**architect** (receives PRD):
-- Technical architecture design
-- Component diagrams (Mermaid)
-- API contracts and data models
-- Ultrathink for complex decisions
+Spawn multiple **architect** agents (by system):
+- Frontend architecture
+- Backend architecture
+- Data architecture
+- Security architecture
+Each writes `docs/architecture-[system].md`
 
-Orchestrator writes `docs/project-plan.md` with combined outputs
+**writer** → `docs/master-plan.md`
+- Synthesizes all plans
+- Creates implementation roadmap
 
 ### PHASE 3: IMPLEMENTATION  
 
-Orchestrator determines approach based on $ARGUMENTS complexity:
+Orchestrator identifies non-conflicting work units:
 
-**Option A - Unified**: 
-- **fullstack-developer** implements everything
+Spawn multiple **backend-developer** agents:
+- Service A, Service B, Service C...
+- Each handles independent modules
 
-**Option B - Parallel**:
-- **backend-developer** │ **frontend-developer** work simultaneously
-- Orchestrator ensures API contracts align
+Spawn multiple **frontend-developer** agents:
+- Component A, Component B, Component C...
+- Each handles independent UI parts
 
-All developers MUST follow KISS, DRY, YAGNI principles
+OR multiple **fullstack-developer** agents for feature-based splits
 
-### PHASE 4: VALIDATION & DOCUMENTATION
+### PHASE 4: VALIDATION
 
-**tester** │ **analyzer** (parallel):
-- Tester: Create/run comprehensive tests (MUST NOT fix failures)
-- Analyzer: Code quality, security, performance review
+Spawn multiple **tester** agents:
+- Unit testing (per module)
+- Integration testing
+- E2E testing
+- Performance testing
+Each writes `docs/test-[type].md`
 
-Then spawn 3 parallel **writer** agents:
-- `docs/test-report.md` - Test results and coverage
-- `docs/technical-docs.md` - Architecture and API docs  
-- `docs/user-guide.md` - Usage instructions
+Spawn multiple **analyzer** agents:
+- Security analysis
+- Performance analysis
+- Code quality checks
+Each writes `docs/validation-[type].md`
 
-### PHASE 5: FINALIZATION
+### PHASE 5: FINAL DOCUMENTATION
 
-**git-specialist** (if version control needed):
-- Semantic commits for all changes
-- Create PR with summaries
-- Link to documentation
+Spawn multiple **writer** agents:
+- User guide
+- API documentation
+- Deployment guide
+- Developer documentation
+
+**git-specialist** (if needed):
+- Create comprehensive commits
+- Generate final PR
 
 ## Usage
 
