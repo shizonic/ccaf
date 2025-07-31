@@ -1,58 +1,124 @@
 # Claude Code Agent Framework (CCAF)
 
-Multi-agent orchestration framework for specialized AI development workflows.
+A sophisticated multi-agent framework for automating software development workflows through specialized AI agents and parallel orchestration.
 
-## Commands
+## Overview
 
-### Research & Planning
-- `/context` - Research technologies, analyze existing code, understand codebases
-  - **When**: Exploring unfamiliar tech, investigating bugs, or learning project structure
-- `/plan` - Transform ideas into PRDs and technical architectures
-  - **When**: Starting new features, defining requirements, or designing system architecture
+CCAF provides 6 slash commands that orchestrate 10 specialized agents to handle complete software development lifecycles - from research and planning to implementation and documentation.
 
-### Development & Quality
-- `/implement` - Develop features with automatic agent selection based on task complexity
-  - **When**: Building features, fixing bugs, or coding solutions after planning
-- `/validate` - Create comprehensive tests and perform code quality analysis
-  - **When**: Testing new features, ensuring code quality, or debugging issues
+## Quick Start
 
-### Complete Workflows
-- `/workflow` - End-to-end development cycle: research → plan → implement → validate
-  - **When**: Full feature development from concept to tested implementation
-
-## Quick Decision Guide
-
-**Starting fresh?** → `/workflow` (complete cycle)  
-**Need to understand something?** → `/context` (research first)  
-**Have requirements ready?** → `/implement` (jump to coding)  
-**Code needs testing?** → `/validate` (quality assurance)
-
-## Usage Examples
+1. **Prerequisites**: Claude Code CLI with MCP server support
+2. **Configuration**: Copy `.mcp.json.example` to `.mcp.json` and add your API keys
+3. **Usage**: Run any command with `/command [arguments]`
 
 ```bash
 /context JWT authentication best practices
-/plan user authentication system  
-/implement JWT auth middleware
+/plan add user authentication system  
+/implement user login functionality
 /validate authentication system
-/workflow add real-time notifications
+/document create API documentation
+/workflow complete auth implementation
 ```
 
-## Agent Capabilities
+## Commands
 
-### Development Specialists
-- **fullstack-developer** - Complete web applications, APIs, database integration
-- **backend-developer** - Server-side logic, APIs, database design, performance optimization
-- **frontend-developer** - UI components, responsive design, client-side optimization
-- **git-specialist** - Version control, branch management, merge conflict resolution
+### Core Development Commands
+- **`/context`** - Research technologies, analyze codebases, gather requirements
+- **`/plan`** - Create PRDs, technical architectures, and implementation plans  
+- **`/implement`** - Build features, fix bugs, develop complete projects
+- **`/validate`** - Generate tests, analyze code quality, verify implementations
+- **`/document`** - Create API docs, user guides, technical specifications
 
-### Planning & Analysis
-- **product-manager** - Feature requirements, PRDs, task breakdown, project planning
-- **architect** - Technical system design, scalability planning, technology decisions
-- **analyzer** - Code quality assessment, security audits, performance analysis
-- **researcher** - Technology investigation, best practices, framework documentation
+### Meta Commands
+- **`/workflow`** - Execute complete development lifecycle (all commands above)
 
-### Quality & Documentation
-- **tester** - Automated testing, test strategy, quality assurance workflows
-- **writer** - Technical documentation, API docs, user guides, specifications
+## Architecture
 
-**Framework automatically selects optimal agents based on your task complexity and requirements.**
+### Specialized Agents
+- **researcher** - Technology research and external documentation
+- **analyzer** - Code quality, security, performance, architecture analysis
+- **product-manager** - Feature requirements and business logic planning
+- **architect** - System design and technical architecture
+- **fullstack-developer** - Complete feature implementation
+- **backend-developer** - Server-side development and APIs
+- **frontend-developer** - UI/UX implementation and client-side logic
+- **tester** - Test creation, execution, and quality assurance
+- **writer** - Technical documentation and guides
+- **git-specialist** - Version control and repository management
+
+### Key Features
+- **Massive Parallelization** - Multiple agents work simultaneously on independent tasks
+- **Conflict Prevention** - Orchestrator ensures no file conflicts between parallel agents  
+- **Direct Output** - Each agent writes to specific files in `docs/` directory
+- **Specialization** - Each agent focuses on their domain expertise
+- **Integration** - Commands work independently or as part of larger workflows
+
+## MCP Integrations
+
+- **context7** - Up-to-date library documentation and code examples
+- **firecrawl** - Advanced web scraping and research capabilities  
+- **ref** - Documentation search and reference materials
+
+## File Structure
+
+```
+.claude/
+├── commands/          # Slash command definitions
+├── agents/            # Specialized agent configurations  
+└── settings.json      # Permission and MCP server settings
+.mcp.json              # MCP server configuration
+```
+
+## Output Structure
+
+All agent outputs are organized in the `docs/` directory:
+- `docs/research-[topic].md` - Research findings
+- `docs/analysis-[area].md` - Code and architecture analysis
+- `docs/prd-[feature].md` - Product requirements
+- `docs/architecture-[system].md` - Technical designs
+- `docs/test-[type].md` - Test reports and coverage
+- `docs/final/[document].md` - Polished documentation
+
+## Development Principles
+
+- **KISS** - Keep implementations simple and focused
+- **YAGNI** - Build only what's explicitly requested
+- **DRY** - Follow existing project patterns and conventions
+- **Quality First** - Emphasis on clean, maintainable, secure code
+- **Parallel Execution** - Maximize efficiency through concurrent agent work
+
+## Examples
+
+```bash
+# Research Phase
+/context "analyze our authentication system and industry best practices"
+
+# Planning Phase  
+/plan "add OAuth 2.0 social login with Google and GitHub"
+
+# Implementation Phase
+/implement "create user registration API with email verification"
+
+# Quality Assurance
+/validate "comprehensive testing for auth system"
+
+# Documentation
+/document "create complete API documentation"
+
+# Complete Workflow
+/workflow "implement JWT-based authentication system"
+```
+
+## Configuration
+
+### API Keys Required
+- **Firecrawl API** - For web research and scraping
+- **Ref API** - For documentation search
+
+### Permissions
+The framework requires specific bash permissions for Git operations, file management, and MCP server access. See `.claude/settings.json` for details.
+
+---
+
+**Note**: CCAF emphasizes defensive security practices and refuses to create potentially malicious code. All agents focus on production-ready, secure implementations following industry best practices.
